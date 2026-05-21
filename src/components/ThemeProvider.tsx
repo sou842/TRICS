@@ -13,7 +13,7 @@ type Ctx = {
 const defaultColor: PrimaryColor = { h: 18, s: "95%", l: "52%" };
 
 const ThemeContext = createContext<Ctx>({ 
-  theme: "dark", 
+  theme: "light", 
   toggle: () => {},
   primaryColor: defaultColor,
   setPrimaryColor: () => {},
@@ -21,8 +21,8 @@ const ThemeContext = createContext<Ctx>({
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined") return "dark";
-    return (localStorage.getItem("theme") as Theme) || "dark";
+    if (typeof window === "undefined") return "light";
+    return (localStorage.getItem("theme") as Theme) || "light";
   });
 
   const [primaryColor, setPrimaryColor] = useState<PrimaryColor>(() => {
