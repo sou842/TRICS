@@ -2,9 +2,12 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { projects } from "@/data/projects";
+import { getProjects } from "@/lib/localStorageData";
 
-const Projects = () => (
+const Projects = () => {
+  const projects = getProjects();
+  
+  return (
   <div className="min-h-screen bg-background text-foreground">
     <SiteNav />
     <section className="px-6 pt-40 pb-20 bg-grid">
@@ -44,6 +47,7 @@ const Projects = () => (
 
     <SiteFooter />
   </div>
-);
+  );
+};
 
 export default Projects;

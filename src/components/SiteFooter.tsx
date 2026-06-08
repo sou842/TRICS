@@ -13,7 +13,6 @@ export const SiteFooter = () => (
           <li><Link to="/projects" className="hover:text-primary">Projects Portal</Link></li>
           <li><Link to="/services" className="hover:text-primary">Our Capabilities</Link></li>
           <li><Link to="/about" className="hover:text-primary">About Us</Link></li>
-          <li><Link to="/settings" className="hover:text-primary">Settings</Link></li>
         </ul>
       </div>
       <div>

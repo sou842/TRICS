@@ -10,7 +10,6 @@ const links = [
   { to: "/services", label: "Services" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
-  { to: "/settings", label: "Settings" },
 ];
 
 export const SiteNav = () => {

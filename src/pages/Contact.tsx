@@ -6,10 +6,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import { saveInquiry } from "@/lib/localStorageData";
 
 const Contact = () => {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const inquiry = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: '',
+      service: formData.get('service') as string,
+      message: formData.get('message') as string,
+    };
+    
+    saveInquiry(inquiry);
     toast.success("Inquiry received — we'll be in touch within 48 hours.");
     (e.target as HTMLFormElement).reset();
   };
@@ -50,20 +61,20 @@ const Contact = () => {
             <div className="grid md:grid-cols-2 gap-5">
               <div className="space-y-2">
                 <Label>Name</Label>
-                <Input required placeholder="Your Name" />
+                <Input required name="name" placeholder="Your Name" />
               </div>
               <div className="space-y-2">
                 <Label>Email</Label>
-                <Input required type="email" placeholder="email@example.com" />
+                <Input required type="email" name="email" placeholder="email@example.com" />
               </div>
             </div>
             <div className="space-y-2">
               <Label>Project Type</Label>
-              <Input placeholder="Civil Construction / Maintenance / MEP Works" />
+              <Input name="service" placeholder="Civil Construction / Maintenance / MEP Works" />
             </div>
             <div className="space-y-2">
               <Label>Message</Label>
-              <Textarea required rows={6} placeholder="Tell us about your project requirements, site location, timeline..." />
+              <Textarea required name="message" rows={6} placeholder="Tell us about your project requirements, site location, timeline..." />
             </div>
             <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-primary-glow rounded-full text-base font-semibold py-6">
               Send Inquiry →

@@ -19,24 +19,31 @@ const curatedColors = [
   { h: 25, s: "95%", l: "50%", name: "Amber", class: "bg-[#f59e0b]" },
 ];
 
-const Settings = () => {
+const Settings = ({ isAdmin = false }: { isAdmin?: boolean }) => {
   const { theme, toggle, primaryColor, setPrimaryColor } = useTheme();
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <SiteNav />
-      <section className="px-6 pt-40 pb-20 bg-grid">
-        <div className="max-w-7xl mx-auto">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary mb-6">// Preferences</p>
-          <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight max-w-4xl">
-            Personalize your <span className="text-gradient">experience</span>.
-          </h1>
-          <p className="mt-6 text-muted-foreground max-w-xl">Customize the visual interface of the Trics Research portal to suit your preference.</p>
+    <div className={isAdmin ? "" : "min-h-screen bg-background text-foreground"}>
+      {!isAdmin && <SiteNav />}
+      {!isAdmin ? (
+        <section className="px-6 pt-40 pb-20 bg-grid">
+          <div className="max-w-7xl mx-auto">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary mb-6">// Preferences</p>
+            <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight max-w-4xl">
+              Personalize your <span className="text-gradient">experience</span>.
+            </h1>
+            <p className="mt-6 text-muted-foreground max-w-xl">Customize the visual interface of the Trics Research portal to suit your preference.</p>
+          </div>
+        </section>
+      ) : (
+        <div className="mb-8">
+          <h1 className="text-3xl font-display font-bold tracking-tight">Portal Settings</h1>
+          <p className="text-muted-foreground mt-1">Customize your admin interface appearance.</p>
         </div>
-      </section>
+      )}
 
-      <section className="px-6 pb-32">
-        <div className="max-w-3xl mx-auto space-y-12">
+      <section className={isAdmin ? "" : "px-6 pb-32"}>
+        <div className={isAdmin ? "space-y-12" : "max-w-3xl mx-auto space-y-12"}>
           {/* Appearance Section */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
@@ -113,7 +120,7 @@ const Settings = () => {
         </div>
       </section>
 
-      <SiteFooter />
+      {!isAdmin && <SiteFooter />}
     </div>
   );
 };

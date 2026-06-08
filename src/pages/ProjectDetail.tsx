@@ -2,12 +2,12 @@ import { useParams, Link } from "react-router-dom";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
-import { projects } from "@/data/projects";
+import { getProjectBySlug } from "@/lib/localStorageData";
 import { ArrowLeft, ArrowRight, Cpu, Shield, Calendar } from "lucide-react";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
-  const project = projects.find((p) => p.slug === slug);
+  const project = getProjectBySlug(slug as string);
 
   if (!project) {
     return (

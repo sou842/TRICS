@@ -3,7 +3,7 @@ import { ArrowUpRight, Shield, Award, Sparkles, Building2, Wrench, Lightbulb, La
 import { Link } from "react-router-dom";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { projects } from "@/data/projects";
+import { getProjects, getTestimonials } from "@/lib/localStorageData";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -19,6 +19,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
   const container = useRef<HTMLDivElement>(null);
+  const projects = getProjects();
+  const testimonials = getTestimonials().filter((t: any) => t.isPublished);
 
   useGSAP(() => {
     // 1. Hero Animations
@@ -306,29 +308,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                name: "Rajesh Kumar",
-                role: "Admin, Civil Department",
-                rating: 4.8,
-                text: "Trics Research delivered our community infrastructure ahead of schedule with unmatched quality. Their focus on government standards is exceptional.",
-                img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop"
-              },
-              {
-                name: "Dr. Ananya Singh",
-                role: "Medical Superintendent",
-                rating: 4.9,
-                text: "The hospital AMC services provided by TRICS have been transformative. Our facility maintenance is now proactive rather than reactive.",
-                img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop"
-              },
-              {
-                name: "Vikram Mehra",
-                role: "Municipal Engineer",
-                rating: 4.7,
-                text: "Executing complex drainage and road networks requires precision. TRICS brings an engineering-first approach that is rare in the contracting world.",
-                img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop"
-              }
-            ].map((t) => (
+            {testimonials.map((t: any) => (
               <div key={t.name} className="bg-card dark:bg-[#0d0d0d] border border-border dark:border-white/5 rounded-2xl p-8 hover:border-primary/20 transition-all group shadow-sm dark:shadow-none">
                 <div className="flex items-center gap-4 mb-8 pb-8 border-b border-border dark:border-white/5">
                   <img src={t.img} alt={t.name} className="w-12 h-12 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all" />
