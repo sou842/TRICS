@@ -8,7 +8,8 @@ import {
   Mail, 
   Phone, 
   CheckCircle2,
-  Clock
+  Clock,
+  ArrowLeft
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { toast } from 'sonner';
@@ -88,7 +89,7 @@ const Inquiries = () => {
 
       <div className="flex-1 border border-border bg-card rounded-lg overflow-hidden flex shadow-sm">
         {/* Left Pane - List */}
-        <div className="w-1/3 border-r border-border bg-background/50 flex flex-col">
+        <div className={`w-full md:w-1/3 border-r border-border bg-background/50 flex flex-col ${selectedId ? 'hidden md:flex' : 'flex'}`}>
           <ScrollArea className="flex-1 h-full">
             {filteredInquiries.length === 0 ? (
               <div className="p-8 text-center text-muted-foreground text-sm">
@@ -132,12 +133,15 @@ const Inquiries = () => {
         </div>
 
         {/* Right Pane - Detail */}
-        <div className="w-2/3 bg-card flex flex-col">
+        <div className={`w-full md:w-2/3 bg-card flex flex-col ${selectedId ? 'flex' : 'hidden md:flex'}`}>
           {selectedInquiry ? (
             <>
               {/* Detail Header Action Bar */}
-              <div className="h-14 border-b border-border flex items-center justify-between px-6 bg-secondary/20">
+              <div className="h-14 border-b border-border flex items-center justify-between px-4 md:px-6 bg-secondary/20">
                 <div className="flex items-center gap-2">
+                  <Button variant="ghost" size="icon" className="md:hidden mr-1" onClick={() => setSelectedId(null)}>
+                    <ArrowLeft className="w-4 h-4" />
+                  </Button>
                   <Button variant="outline" size="sm" onClick={() => handleStatusChange(selectedInquiry.id, selectedInquiry.status === 'unread' ? 'read' : 'unread')}>
                     {selectedInquiry.status === 'unread' ? <CheckCircle2 className="w-4 h-4 mr-2" /> : <Clock className="w-4 h-4 mr-2" />}
                     Mark as {selectedInquiry.status === 'unread' ? 'Read' : 'Unread'}

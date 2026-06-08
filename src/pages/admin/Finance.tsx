@@ -253,7 +253,7 @@ const Finance = () => {
 
       {/* Ledger Table */}
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between border-b border-border pb-4">
+        <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-border pb-4 gap-4">
           <div>
             <CardTitle>Invoice Ledger</CardTitle>
             <CardDescription>Track all client contracts and invoices</CardDescription>
@@ -342,27 +342,27 @@ const Finance = () => {
               Enter the invoice details. The ID will be generated automatically if left blank.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="id" className="text-right">Invoice ID</Label>
-              <Input id="id" value={formData.id} onChange={e => setFormData({...formData, id: e.target.value})} className="col-span-3" placeholder="Auto-generated if empty" disabled={!!formData.id} />
+          <div className="grid gap-4 py-4 max-h-[70vh] overflow-y-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 items-start md:items-center gap-2 md:gap-4">
+              <Label htmlFor="id" className="text-left md:text-right">Invoice ID</Label>
+              <Input id="id" value={formData.id} onChange={e => setFormData({...formData, id: e.target.value})} className="md:col-span-3" placeholder="Auto-generated if empty" disabled={!!formData.id} />
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="clientName" className="text-right">Client Name *</Label>
-              <Input id="clientName" value={formData.clientName} onChange={e => setFormData({...formData, clientName: e.target.value})} className="col-span-3" />
+            <div className="grid grid-cols-1 md:grid-cols-4 items-start md:items-center gap-2 md:gap-4">
+              <Label htmlFor="clientName" className="text-left md:text-right">Client Name *</Label>
+              <Input id="clientName" value={formData.clientName} onChange={e => setFormData({...formData, clientName: e.target.value})} className="md:col-span-3" />
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="project" className="text-right">Project</Label>
-              <Input id="project" value={formData.project} onChange={e => setFormData({...formData, project: e.target.value})} className="col-span-3" />
+            <div className="grid grid-cols-1 md:grid-cols-4 items-start md:items-center gap-2 md:gap-4">
+              <Label htmlFor="project" className="text-left md:text-right">Project</Label>
+              <Input id="project" value={formData.project} onChange={e => setFormData({...formData, project: e.target.value})} className="md:col-span-3" />
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="amount" className="text-right">Amount (₹) *</Label>
-              <Input id="amount" type="number" value={formData.amount} onChange={e => setFormData({...formData, amount: e.target.value})} className="col-span-3" />
+            <div className="grid grid-cols-1 md:grid-cols-4 items-start md:items-center gap-2 md:gap-4">
+              <Label htmlFor="amount" className="text-left md:text-right">Amount (₹) *</Label>
+              <Input id="amount" type="number" value={formData.amount} onChange={e => setFormData({...formData, amount: e.target.value})} className="md:col-span-3" />
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="status" className="text-right">Status</Label>
+            <div className="grid grid-cols-1 md:grid-cols-4 items-start md:items-center gap-2 md:gap-4">
+              <Label htmlFor="status" className="text-left md:text-right">Status</Label>
               <Select value={formData.status} onValueChange={(v) => setFormData({...formData, status: v})}>
-                <SelectTrigger className="col-span-3">
+                <SelectTrigger className="md:col-span-3">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -372,13 +372,13 @@ const Finance = () => {
                 </SelectContent>
               </Select>
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="issueDate" className="text-right">Issue Date</Label>
-              <Input id="issueDate" type="date" value={formData.issueDate} onChange={e => setFormData({...formData, issueDate: e.target.value})} className="col-span-3" />
+            <div className="grid grid-cols-1 md:grid-cols-4 items-start md:items-center gap-2 md:gap-4">
+              <Label htmlFor="issueDate" className="text-left md:text-right">Issue Date</Label>
+              <Input id="issueDate" type="date" value={formData.issueDate} onChange={e => setFormData({...formData, issueDate: e.target.value})} className="md:col-span-3" />
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="dueDate" className="text-right">Due Date</Label>
-              <Input id="dueDate" type="date" value={formData.dueDate} onChange={e => setFormData({...formData, dueDate: e.target.value})} className="col-span-3" />
+            <div className="grid grid-cols-1 md:grid-cols-4 items-start md:items-center gap-2 md:gap-4">
+              <Label htmlFor="dueDate" className="text-left md:text-right">Due Date</Label>
+              <Input id="dueDate" type="date" value={formData.dueDate} onChange={e => setFormData({...formData, dueDate: e.target.value})} className="md:col-span-3" />
             </div>
           </div>
           <DialogFooter>

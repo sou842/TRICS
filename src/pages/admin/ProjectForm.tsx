@@ -61,7 +61,7 @@ const ProjectForm = () => {
   return (
     <div className="space-y-6 pb-24">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <Button variant="outline" size="icon" asChild>
             <Link to="/admin/projects">
@@ -77,7 +77,7 @@ const ProjectForm = () => {
             </p>
           </div>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 self-start md:self-auto">
           <Button variant="outline" asChild>
             <Link to="/admin/projects">Cancel</Link>
           </Button>
@@ -98,7 +98,7 @@ const ProjectForm = () => {
               <CardDescription>The primary details displayed on the project card.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="title">Project Title *</Label>
                   <Input 
@@ -123,7 +123,7 @@ const ProjectForm = () => {
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="tag">Category Tag (e.g. 2024 · Infrastructure)</Label>
                   <Input id="tag" value={formData.tag} onChange={e => handleChange('tag', e.target.value)} />
